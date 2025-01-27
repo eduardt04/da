@@ -10,7 +10,10 @@ async function search() {
     }
 
     const response = await fetch('data.json');
-    const products = await response.json();
+    const productsStrings = await response.json(); // This is an array of strings
+
+    // Parse each JSON string into an object
+    const products = productsStrings.map(productString => JSON.parse(productString));
 
     const filteredProducts = products.filter(product => {
         const title = product.titlu.toLowerCase();
