@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.search-container {
+    text-align: center;
+    margin: 20px;
+}
+
+#results {
+    margin-top: 20px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.product h2 {
+    color: #333;
+}
+
+.product-details {
+    margin-top: 10px;
+}
