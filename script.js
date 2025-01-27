@@ -3,7 +3,6 @@ async function search() {
     const resultsContainer = document.getElementById('results');
     resultsContainer.innerHTML = ''; // Clear previous results
 
-    // Check if the query includes "măsuță cafea"
     if (!query.includes("măsuță cafea")) {
         alert("Te rog încearcă din nou cu 'Măsuță cafea'");
         return; // Exit the function if the condition is met
@@ -13,7 +12,16 @@ async function search() {
     const productsStrings = await response.json(); // This is an array of strings
 
     // Parse each JSON string into an object
-    const products = productsStrings.map(productString => JSON.parse(productString));
+    const products = productsStrings.map(productString => {
+        try {
+            return JSON.parse(productString);
+        } catch(e) {
+            console.error("Error parsing JSON string:", productString, e);
+            return null;
+        }
+    }).filter(product => product !== null); // Filter out any nulls due to parsing errors
+
+    console.log(products[0]);
 
     const filteredProducts = products.filter(product => {
         const title = product.titlu.toLowerCase();
@@ -21,7 +29,6 @@ async function search() {
     });
 
     if (filteredProducts.length === 0) {
-        // Handle the case where no products match the query
         resultsContainer.innerHTML = '<p>Nu au fost găsite produse conform căutării.</p>';
     } else {
         filteredProducts.forEach(product => {
