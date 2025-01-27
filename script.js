@@ -20,6 +20,7 @@ async function search() {
             <div class="product-details">Dimensiuni: ${product.dimensiuni}</div>
             <div class="product-details">Culoare: ${product.culoare}</div>
             <div class="product-details">Material: ${product.material}</div>
+            <div class="product-details">URL: <a href="${product.url}" target="_blank">Vezi produs</a></div>
         `;
         resultsContainer.appendChild(productElement);
     });
